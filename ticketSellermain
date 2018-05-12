@@ -1,0 +1,34 @@
+package ticketseller;
+import java.util.Scanner;
+import java.util.Random;
+/**
+ *
+ * @author Vincent Porras
+ */
+public class TicketSeller 
+{
+    public static void main(String[] args) 
+    {
+        Scanner in = new Scanner(System.in);
+        Random gen = new Random();
+        ticketHandler cinemaTickets = new ticketHandler(100, 4);
+        System.out.println("Get your tickets, they'll be gone before you know it!");
+        int remainingTickets = cinemaTickets.getAvailableTickets();
+        for(int i =0; cinemaTickets.getAvailableTickets() > 0; i++)
+        {
+            cinemaTickets.purchaseTickets(gen.nextInt(4) + 1);
+            if (cinemaTickets.getAvailableTickets() > 1)
+            {
+                System.out.println("There are " + cinemaTickets.getAvailableTickets() + " tickets available.");
+            }
+            else if (cinemaTickets.getAvailableTickets() == 1)
+            {System.out.println("There is only 1 ticket left!");}
+            else
+            {System.out.println("No more tickets!");
+            
+        }    
+        
+    }
+    
+}
+}
