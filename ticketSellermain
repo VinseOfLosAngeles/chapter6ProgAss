@@ -1,6 +1,5 @@
 package ticketseller;
 import java.util.Scanner;
-import java.util.Random;
 /**
  *
  * @author Vincent Porras
@@ -10,24 +9,26 @@ public class TicketSeller
     public static void main(String[] args) 
     {
         Scanner in = new Scanner(System.in);
-        Random gen = new Random();
         ticketHandler cinemaTickets = new ticketHandler(100, 4);
         System.out.println("Get your tickets, they'll be gone before you know it!");
-        int remainingTickets = cinemaTickets.getAvailableTickets();
-        for(int i =0; cinemaTickets.getAvailableTickets() > 0; i++)
+        
+        //int remainingTickets = cinemaTickets.getAvailableTickets();
+        while (cinemaTickets.getAvailableTickets() > 0)
         {
-            cinemaTickets.purchaseTickets(gen.nextInt(4) + 1);
-            if (cinemaTickets.getAvailableTickets() > 1)
+            System.out.print("Enter the number of tickets you want to buy: ");
+            int ticketsOrdered = in.nextInt();
+            if (cinemaTickets.getAvailableTickets() - ticketsOrdered >= 0)
             {
-                System.out.println("There are " + cinemaTickets.getAvailableTickets() + " tickets available.");
+                cinemaTickets.purchaseTickets(ticketsOrdered);
+                if (cinemaTickets.getAvailableTickets() > 0)
+                {System.out.println("The number of tickets available is " + cinemaTickets.getAvailableTickets() + ".");}
             }
-            else if (cinemaTickets.getAvailableTickets() == 1)
-            {System.out.println("There is only 1 ticket left!");}
             else
-            {System.out.println("No more tickets!");
+            {System.out.println("Sorry, you may only purchase " + cinemaTickets.getAvailableTickets() + ".");}
             
         }    
-        
+        System.out.println("Sold out!");
+        System.out.println("There were " + cinemaTickets.getBuyers() + " buyers.");
     }
     
 }
