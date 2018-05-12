@@ -1,0 +1,41 @@
+package ticketseller;
+/**
+ *
+ * @author VincentPorras
+ */
+public class ticketHandler 
+{
+    private int ticksAvailable;
+    private final int MAX_TICKS;
+    private int buyers;
+    /**
+     * constructs a ticket handler
+     */
+    public ticketHandler(int totalTicketsAvailable, int maxPerCustomer)
+    {
+        this.ticksAvailable = totalTicketsAvailable;
+        this.MAX_TICKS = maxPerCustomer;
+        buyers = 0;
+    }
+    /**
+     * processes the sale of tickets
+     * @param tickets number of tickets being sold
+     */
+    public void purchaseTickets(int tickets)
+    {
+        if (tickets <= MAX_TICKS && ticksAvailable - tickets >= 0)
+        {
+            buyers++;
+            ticksAvailable = ticksAvailable - tickets;
+        }
+    }
+    
+    public int getAvailableTickets()
+    {return ticksAvailable;}
+    public int getBuyers()
+    {return buyers;}
+    public int getMaxTickets()
+    {return MAX_TICKS;}
+    
+    
+}
